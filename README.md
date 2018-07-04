@@ -1,5 +1,7 @@
 # Mixward: The community mixer that rewards its users
 
+**WARNING: ** This work is "heavy" WIP, and should NOT be used for any serious purpose
+
 ## Idea:
 - Sender deposits on mixer contract the amount to send to recipient + reward to anyone who "unlocks" the payment
 - The mixer keeps tracks of every reward on a mapping((address=>uint256) where the address is the stealth address of the recipient, and the uint256 is the amount of the reward. Or even better, we have a struct:
@@ -29,7 +31,7 @@ Actually they are multiple ways we can consider the array of stuck payments:
 
 ## Pros
 
-- Anonymity set: All the network (better than ring sig approaches as the recipient needs to know one private key associated with one public key in the ring to withdraw, which means that the guy who calls withdraw is necessarily a member of the limited anonymity set (restrivted by the size of the ring))
+- Anonymity set: All the network
 - Very cheap: The only expensive operation is the computation of the stealth address which is done off-chain, the logic of the mixer on-chain is pretty simple and does not make use of any expensive operations (no call to expensive EC operations on precompiled and so on)
 - It circumvent the "stealth address funding problem", where people can just create stealth addresses to hide their identities, and leverage the network effect to wait for others on the network to "unlock" for them the payment they are expecting + Imagine I am the recipient of a private TX (one stuck TX containing my stealth address is in the pool of stuck TX on the mixer contract), I am the only one (along with the sender who obviously sent me the money in a previous transaction) who knows the "ownership" of the stealth address (ie: the identity of the recipient, who is me in this case). Then I could just "unlock" my stuck payment in the pool of the mixer --> The other members of the network will just believe I am unlocking funds to get their reward.
 
