@@ -11,7 +11,7 @@ w3 = Web3(HTTPProvider("http://localhost:8545"));
 def compile():
     Mixward = "./contracts/Mixward.sol"
     SafeMath = "./contracts/SafeMath.sol"  
-    Queue =  "../contracts/Queue.sol"
+    Queue =  "./contracts/Queue.sol"
     compiled_sol =  compile_files([Queue, SafeMath, Mixward], allow_paths="./contracts")
     mixward_interface = compiled_sol[Mixward + ':Mixward']
     return mixward_interface
@@ -30,7 +30,7 @@ def deploy():
 def deposit_call(mixward, callingAddress, recipient, rewardInWei):
     denomination = 1000000000000000000 # The contract supports payments of 1 ether = 1000000000000000000 wei
     value = rewardInWei + denomination
-    tx_hash = mixward.deposit(recipient, transact={'from': callingAddress, 'gas': 4000000, "value": w3.toWei(value, "ether")})
+    tx_hash = mixward.deposit(recipient, transact={'from': callingAddress, 'gas': 4000000, "value": w3.toWei(value, "wei")})
     tx_receipt = w3.eth.waitForTransactionReceipt(tx_hash, 10000)
     return tx_receipt
 
@@ -64,11 +64,11 @@ def main():
     printBalances(senderAddress, recipientAddress, unlockerAddress, mixward.address)
 
     print("Unlocking payment")
-    receipt = unlock_call(mixward_instance, unlockerAddress)
+    receipt = unlock_call(mixward, unlockerAddress)
     print("Receipt of unlock ", receipt)
 
     print(" ----------- BALANCES AFTER WITHDRAW ---------- ")
-    printBalances(senderAddress, recipient1Address, recipient2Address, mixward.address)
+    printBalances(senderAddress, recipientAddress, unlockerAddress, mixward.address)
 
 if __name__== "__main__":
      main()
