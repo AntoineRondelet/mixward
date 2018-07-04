@@ -37,5 +37,5 @@ Actually they are multiple ways we can consider the array of stuck payments:
 
 ## Cons
 
-- In case where very good rewards are set, there could be a "rush" a people trying to withdraw/unlock the payment, which means that this could create congestions on the blockchain (think about 1000 payments being deposited, with a reward of 1ether each ==> Everyone would try to unlock them !), which could lead to many transactions being reverted, and thus, many "trash" transactions being included into blocks...
+- In case where very good rewards are set, there could be a "rush" a people trying to withdraw/unlock the payment (think about 1000 payments being deposited, with a reward of 1ether each ==> Everyone would try to unlock them !), which could lead to many transactions being reverted, and thus, many "trash" transactions being included into blocks...
 - The sender of a payment can see when his recipient does another payment (because he is the only one to know the mapping between the recipient's stealth address and the "identity" behind it). So in case where the sender wanted to be malicious, he could reveal the identity of his recipient to everyone after the payment is done, or, he could track when the recipient of his previous payment does another payment (although this does not leak a loot of information...)
