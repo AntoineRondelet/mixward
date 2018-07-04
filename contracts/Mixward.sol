@@ -13,7 +13,7 @@ contract Mixward is Queue {
         payments.data.length = 100;
     }
 
-    function addPayment(StuckPayment p) {
+    function addPayment(StuckPayment p) internal {
         push(payments, p);
     }
     
@@ -31,7 +31,7 @@ contract Mixward is Queue {
         addPayment(newPayment);
     }
     
-    function popPayment() returns (StuckPayment) {
+    function popPayment() internal returns (StuckPayment) {
         return pop(payments);
     }
 
