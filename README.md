@@ -39,3 +39,9 @@ Actually they are multiple ways we can consider the array of stuck payments:
 
 - In case where very good rewards are set, there could be a "rush" a people trying to withdraw/unlock the payment (think about 1000 payments being deposited, with a reward of 1ether each ==> Everyone would try to unlock them !), which could lead to many transactions being reverted, and thus, many "trash" transactions being included into blocks...
 - The sender of a payment can see when his recipient does another payment (because he is the only one to know the mapping between the recipient's stealth address and the "identity" behind it). So in case where the sender wanted to be malicious, he could reveal the identity of his recipient to everyone after the payment is done, or, he could track when the recipient of his previous payment does another payment (although this does not leak a loot of information...)
+
+--------------------
+
+**Note:** The interest is more than limited for now because the sender could directly send the amount he wants to the recipient's stealth address! I guess this could be useful in the case where some computation specific to the sender of a payment has to be done when he wants to withdraw. The main advantage is thus the delegation of a smart contract call to someone else.
+
+--------------------
