@@ -1,8 +1,11 @@
-# Mixward: The community mixer that rewards its users
+# Mixward
 
 **WARNING: ** This work is "heavy" WIP, and should NOT be used for any serious purpose
 
+Following are a bunch of ideas about how we could incentivize participants of the network to call a contract on behalf of someone else. In the case where this "someone else" is a freshly generated stealth address whose owner doesn't want to found (to avoid introducing a link between public address and stealth address). The sender could deposit a payment for the stealth address of his recipient along with a reward, in the mixer, and someone could call the "unlock" function to fund the recipient's stealth address. Note that the interest is limited if we consider that the only instruction done by the "unlock" function is to give the reward and fund the stealth address of the recipient of the payment. However, this could be interesting in scenarios where some computation has to be done for the stealth address of the payment... This needs further thinking though...
+
 ## Idea:
+
 - Sender deposits on mixer contract the amount to send to recipient + reward to anyone who "unlocks" the payment
 - The mixer keeps tracks of every reward on a mapping((address=>uint256) where the address is the stealth address of the recipient, and the uint256 is the amount of the reward. Or even better, we have a struct:
 ```
